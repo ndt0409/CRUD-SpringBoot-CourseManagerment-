@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+</head>
+<body>
+<div class="container-fluid text-center">
+    <div>
+        <h2>Quản lý lớp học</h2>
+    </div>
+    <div class="m-2">
+        <a class="h3" th:href="@{/courses/new}">Thêm mới</a>
+    </div>
+    <div th:if="message" class="alert alert-success text-center">
+        [[${message}]]
+    </div>
+    <div>
+        <table class="table table-bordered">
+            <thead class="thead-light">
+            <tr>
+                <th>ID</th>
+                <th>Lớp học</th>
+                <th>Sĩ số</th>
+                <th>Email</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <th:block th:each="course : ${listCourses}">
+                <tr>
+                    <td>[[${course.id}]]</td>
+                    <td>[[${course.ncourse}]]</td>
+                    <td>[[${course.quantity}]]</td>
+                    <td>[[${course.email}]]</td>
+                    <td>
+                        <a class="h4 mr-3" th:href="@{'/courses/edit/' + ${course.id}}">Sửa</a>
+                        <a class="h4" th:href="@{'/courses/delete/' + ${course.id}}">Xóa</a>
+                    </td>
+                </tr>
+            </th:block>
+            </tbody>
+        </table>
+    </div>
+</div>
+</body>
+</html>
